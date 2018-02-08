@@ -8,8 +8,15 @@ Brian's house of LED development, code that will be run on the Arduinos to contr
 ## Required Hardware:
 - WS2812B LED Strip
 - Arduinos
+- 5V power source
 
 ### Hardware Hookup Info
+5V power through 5V pin
+
+Data through center LED strip pin - see code for proper pin on Arduino
+
+:warning: Caution: Use sufficient power source :warning:
+
 ## Description of Files:
 
 ### LED_Control_simple_patterns.ino:
