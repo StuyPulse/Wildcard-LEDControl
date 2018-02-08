@@ -7,16 +7,15 @@ CRGB leds[LEDcount];
 volatile int PatternStyle;
 
 void setup() {
-  // put your setup code here, to run once:
   Wire.begin(SELF_ADDRESS);
   Wire.onReceive(recvEvent);
   Serial.begin(9600);
-  Serial.println("Initialized");
+  Serial.println("Slave initialized.");
   FastLED.addLeds<WS2812,LED_PIN,GRB>(leds,LEDcount);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // Nothing in loop, all dealt with in recvEvent.
 }
 
 void recvEvent(int howMany)
@@ -24,6 +23,7 @@ void recvEvent(int howMany)
   if (Wire.available())
   {
     PatternStyle = Wire.read();
+	//For trimming address byte sent by the Roborio.
     if (PatternStyle == SELF_ADDRESS)
     {
       Serial.println("Address received");
@@ -42,7 +42,7 @@ void recvEvent(int howMany)
     if (PatternStyle == 68)
     {
       blinkRed();
-      Serial.println("Finished");
+      Serial.println("Blinky finished");
     }
     Serial.print("\nPattern Style: ");
     Serial.print(PatternStyle);
@@ -50,6 +50,8 @@ void recvEvent(int howMany)
   }
 }
 
+
+//LED Helper Functions
 void allRed()
 {
   for (int i = 0; i<LEDcount; i++)
@@ -68,7 +70,6 @@ void blinkRed()
     }
     FastLED.show();
     delay(1000);
-    
     for (int i = 0; i<LEDcount; i++)
     {
       leds[i] = CRGB(0,0,0);
