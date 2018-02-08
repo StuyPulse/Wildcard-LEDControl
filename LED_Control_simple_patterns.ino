@@ -2,7 +2,9 @@
 #define NUM_LEDS 10
 #define LED_PIN 7
 CRGB leds[NUM_LEDS];
+
 void setup() {
+  //Initialize the LEDs	
   FastLED.addLeds<WS2812,LED_PIN,GRB>(leds,NUM_LEDS);
 }
 
@@ -25,6 +27,7 @@ for(int i=0;i<2;i++){
 }
 }
 
+//Moves single pixel across LED strip
 void movinglight(){
   for(int i=0;i<11;i++){
     leds[i]=CRGB(0,255,0);

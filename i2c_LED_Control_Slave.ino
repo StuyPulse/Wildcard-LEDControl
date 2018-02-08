@@ -2,9 +2,13 @@
 #include <FastLED.h>
 #define LEDcount 10
 #define LED_PIN 7
-#define SELF_ADDRESS 10
+#define SELF_ADDRESS 8
+
+//Instance LED Strip LED array.
 CRGB leds[LEDcount];
-volatile int PatternStyle;
+
+volatile int patternID;
+
 
 void setup() {
   Wire.begin(SELF_ADDRESS);
@@ -22,36 +26,37 @@ void recvEvent(int howMany)
 {
   if (Wire.available())
   {
-    PatternStyle = Wire.read();
+    patternID = Wire.read();
 	//For trimming address byte sent by the Roborio.
-    if (PatternStyle == SELF_ADDRESS)
+    if (patternID == SELF_ADDRESS)
     {
       Serial.println("Address received");
-      PatternStyle = Wire.read();
+      patternID = Wire.read();
     }
-    if (PatternStyle==65)
+    if (patternID==65)
     {
       allRed();
       Serial.println("Turned on");
     }
-    if (PatternStyle==66)
+    if (patternID==66)
     {
       allOff();
       Serial.println("Turned off");
     }
-    if (PatternStyle == 68)
+    if (patternID == 68)
     {
       blinkRed();
       Serial.println("Blinky finished");
     }
     Serial.print("\nPattern Style: ");
-    Serial.print(PatternStyle);
+    Serial.print(patternID);
     Serial.print("\n");
   }
 }
 
 
 //LED Helper Functions
+//patternID: 65
 void allRed()
 {
   for (int i = 0; i<LEDcount; i++)
@@ -60,9 +65,10 @@ void allRed()
   }
   FastLED.show();
 }
+//patternID: 68
 void blinkRed()
 {
-  while (PatternStyle == 68)
+  while (patternID == 68)
   {
     for (int i = 0; i<LEDcount; i++)
     {
@@ -79,6 +85,7 @@ void blinkRed()
     
   }
 }
+//patternID: 66
 void allOff()
 {
   for (int i = 0; i<LEDcount; i++)

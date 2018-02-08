@@ -9,8 +9,7 @@ Brian's house of LED development, code that will be run on the Arduinos to contr
 - WS2812B LED Strip
 - Arduinos
 
-### Hardware Hookup Info:
-
+### Hardware Hookup Info
 ## Description of Files:
 
 ### LED_Control_simple_patterns.ino:
