@@ -14,7 +14,7 @@ void setup() {
   Wire.begin(SELF_ADDRESS);
   Wire.onReceive(recvEvent);
   Serial.begin(9600);
-  Serial.println("Slave initialized.");
+  Serial.println(F("Slave initialized."));
   FastLED.addLeds<WS2812,LED_PIN,GRB>(leds,LEDcount);
 }
 
@@ -30,25 +30,25 @@ void recvEvent(int howMany)
 	//For trimming address byte sent by the Roborio.
     if (patternID == SELF_ADDRESS)
     {
-      Serial.println("Address received");
+      Serial.println(F("Address received"));
       patternID = Wire.read();
     }
     if (patternID==65)
     {
       allRed();
-      Serial.println("Turned on");
+      Serial.println(F("Turned on"));
     }
     if (patternID==66)
     {
       allOff();
-      Serial.println("Turned off");
+      Serial.println(F("Turned off"));
     }
     if (patternID == 68)
     {
       blinkRed();
-      Serial.println("Blinky finished");
+      Serial.println(F("Blinky finished"));
     }
-    Serial.print("\nPattern Style: ");
+    Serial.print(F("\nPattern Style: "));
     Serial.print(patternID);
     Serial.print("\n");
   }
