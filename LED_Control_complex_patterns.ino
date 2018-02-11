@@ -18,7 +18,6 @@ void loop(){
 }
 
 void fire1() {
-  //
   for(int i=0;i<10;i++){
     if (i<4){
       leds[i]=CHSV(random(20,25),255,255);}
@@ -122,4 +121,3 @@ void testcolorhsv(int h, int s, int v){
   leds[0]=CHSV(h,s,v);
   FastLED.show();
 }
-

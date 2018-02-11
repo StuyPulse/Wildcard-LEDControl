@@ -22,11 +22,19 @@ Data through center LED strip pin - see code for proper pin on Arduino
 ### LED_Control_simple_patterns.ino:
 Just 2 functions with LED subroutines in them. - Credits to Anna Li
 
+### LED_Control_complex_patterns.ino:
+LED subroutines with more complex patterns. - also credits to Anna Li
+
 ### i2c_Serial_Write_Master.ino:
 A master device that will write a single byte to a slave device. You can choose the byte via serial monitor/console. Please be aware that pressing the key on the keyboard will send the byte.
 
 ### i2c_LED_Control_Slave.ino:
 The very first prototype of the code for the slave device controlled by the roborio. Will output a WS2812 pattern according to data sent from the Roborio via i2c. Will also print the LED Pattern ID if connected to the Arduino via serial.
+
+### i2c_LED_Control_Slave_MemoryHappy.ino:
+Essentially i2c_LED_Control_Slave.ino but uses the MemoryFree.h library. It is just to fully verify that there will be no memory problems.
+
+
 
 Good luck with your lighting!
 
