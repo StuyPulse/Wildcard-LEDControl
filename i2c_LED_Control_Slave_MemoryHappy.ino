@@ -1,6 +1,5 @@
 #include <Wire.h>
 #include <FastLED.h>
-#include <MemoryFree.h>
 #define LEDcount 10
 #define LED_PIN 7
 #define SELF_ADDRESS 10

@@ -1,6 +1,32 @@
+#include <fastpin.h>
+#include <pixelset.h>
+#include <fastled_config.h>
+#include <colorutils.h>
+#include <fastled_progmem.h>
+#include <noise.h>
+#include <lib8tion.h>
+#include <chipsets.h>
+#include <fastspi_dma.h>
+#include <platforms.h>
+#include <fastspi.h>
+#include <led_sysdefs.h>
+#include <fastspi_bitbang.h>
+#include <cpp_compat.h>
 #include <FastLED.h>
-#define NUM_LEDS ___
-#define LED_PIN ___
+#include <fastspi_nop.h>
+#include <fastled_delay.h>
+#include <pixeltypes.h>
+#include <colorpalettes.h>
+#include <hsv2rgb.h>
+#include <dmx.h>
+#include <fastspi_types.h>
+#include <color.h>
+#include <fastspi_ref.h>
+#include <bitswap.h>
+#include <power_mgt.h>
+#include <controller.h>
+#define NUM_LEDS 10
+#define LED_PIN 7
 CRGB leds[NUM_LEDS];
 int redAlliance;
 int patternID;
@@ -12,11 +38,11 @@ void setup()
 
 void loop()
 {
-		
+	patternID=10;	
 }
 
 //FlatGreen
-void allSet(R,G,B)
+void allSet(int R,int G,int B)
 {
 	for (int ledIndex = 0; ledIndex<NUM_LEDS; ledIndex++)
 	{
@@ -106,7 +132,11 @@ void liftPurpleRise()
 	{
 		for (int ledIndex = 0, ledIndex < LIFT_LED_COUNT, ledIndex++)
 		{
-			
+			if (ledIndex%5==0)
+			{
+				leds[ledIndex] = CRGB(138,43,226);
+				leds[ledIndex+1] = CRGB(138,43,226);
+			}
 		}
 	}
 }
