@@ -239,3 +239,43 @@ void blink()
     delay(750);
   }
 }
+
+//Storage
+/*
+    if (patternID == SELF_ADDRESS)
+    {
+      Serial.println(F("UL blinky mk1: address received."));
+      patternID = Wire.read();
+    }
+    if (patternID == addrs[0])
+    {
+      allSet(0,0,0);
+    }
+    if (patternID == addrs[1])
+    {
+      if (blueAlliance)
+      {
+        bluePulse();
+      }
+      else
+      {
+        redPulse();
+      }
+    }
+    if (patternID == addrs[2])
+    {
+      greenPulse();
+    }
+    if (patternID == addrs[3])
+    {
+      allSet(0,220,0);
+    }
+    if (patternID == addrs[4])
+    {
+      tripleFlash();
+    }
+    if (patternID == addrs[5])
+    {
+      makeItRain();
+    }
+*/

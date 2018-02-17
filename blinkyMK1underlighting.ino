@@ -5,7 +5,7 @@
 #define SELF_ADDRESS 10
 #define sensePin 12
 
-int addrs = {65,67,69,71,73,75};
+const int addrs[] = {65,67,69,71,73,75};
 bool blueAlliance = false;
 int patternID = 0;
 
@@ -13,10 +13,15 @@ int patternID = 0;
 CRGB leds[LED_COUNT];
 
 void setup() {
+  pinMode(sensePin,INPUT);
   Wire.begin(SELF_ADDRESS);
   Wire.onReceive(onRecv);
   Serial.begin(9600);
   Serial.println(F("UL blinky mk1: initialized."));
+  if (analogRead(sensePin) > 750)
+  {
+    blueAlliance = true;
+  }
   FastLED.addLeds<WS2812,LED_PIN,GRB>(leds,LED_COUNT);
 }
 
@@ -29,41 +34,38 @@ void onRecv(int howMany)
   if (Wire.available())
   {
     patternID = Wire.read();
-    if (patternID == SELF_ADDRESS)
+    switch(patternID)
     {
-      Serial.println(F("UL blinky mk1: address received."));
-      patternID = Wire.read();
-    }
-    if (patternID == addrs[0])
-    {
-      allSet(0,0,0);
-    }
-    if (patternID == addrs[1])
-    {
-      if (blueAlliance)
-      {
-        bluePulse();
-      }
-      else
-      {
-        redPulse();
-      }
-    }
-    if (patternID == addrs[2])
-    {
-      greenPulse();
-    }
-    if (patternID == addrs[3])
-    {
-      allSet(0,220,0);
-    }
-    if (patternID == addrs[4])
-    {
-      tripleFlash();
-    }
-    if (patternID == addrs[5])
-    {
-      makeItRain();
+      case SELF_ADDRESS:
+        Serial.println(F("UL blinky mk1: address received."));
+        patternID = Wire.read();       
+      case 65:
+        allSet(0,0,0);        
+        break;
+      case 67:
+        if (blueAlliance)
+        {
+          bluePulse();
+        }
+        else
+        {
+          redPulse();
+        }
+        break;
+      case 69:
+        greenPulse();
+        break;
+      case 71:
+        allSet(0,220,0);
+        break;
+      case 73:
+        tripleFlash();
+        break;
+      case 75:
+        makeItRain();
+        break;
+      default:
+        allSet(240,0,240);
     }
   }
 }
