@@ -220,3 +220,22 @@ void Fire2012()
     }
 }
 */
+void blink()
+{
+  byte Rval = 200;
+  byte Bval = 0;
+  if (blueAlliance)
+  {
+    Rval = 0;
+    Bval = 200;
+  }
+  while (patternID == 68)
+  {
+    allSet(Rval,0,Bval);
+    FastLED.show();
+    delay(750);
+    allSet(0,0,0);
+    FastLED.show();
+    delay(750);
+  }
+}

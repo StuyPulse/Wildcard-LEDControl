@@ -1,0 +1,18 @@
+Set the switch to ON for Red Alliance
+Set the switch to OFF for Blue Alliance
+
+#UNDERLIGHTING#
+Underlighting Address: 10
+DO NOT SEND 10 TO THIS DEVICE
+
+PreMatch/Waiting Pattern:
+Breathe
+
+#Will have to test things. If sending the numbers to byte dont work, send individual characters instead.
+Sent Byte:		Pattern:
+13 o A			All Off
+15 o C			Match Pulse
+17 o E			Pulse Green
+19 o G			Solid Green
+21 o I			Match Triple Flash (For a just opened grabber / dropped power cube. Will return to Match pulse)
+23 o K			Rainbow

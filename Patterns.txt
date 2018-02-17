@@ -8,8 +8,9 @@ Tele-Op:
     - Start Acquirer (Pulsing Green)
     - Cube Aquire/Cube Flipped (Flat Green)
     - Lift Lifting (Purple Rising Up)
-    - Grabber Opened (Flashing Alliance Color)
+    - Grabber Opened (Flashing Alliance Color) #Scrolling better?
     - Climbing (Rainbow Cycle on Bottom, Rainbow Rising Up)
 Post-Game:
     - "We Won!" Animation (Rainbow strobe)
     - Wildcard Button (Red Strobe)
+    
