@@ -31,7 +31,7 @@ void onRecv(int howMany)
     patternID = Wire.read();
     if (patternID == SELF_ADDRESS)
     {
-      Serial.println(F("UL blinky mk1: address received."))
+      Serial.println(F("UL blinky mk1: address received."));
       patternID = Wire.read();
     }
     if (patternID == addrs[0])
@@ -86,7 +86,7 @@ void redBreathe()
       FastLED.show();
       delay(30);
     }
-    for (int i = 0; i<254; i--)
+    for (int i = 254; i>0; i--)
     {
       allSet(i,0,0);
       FastLED.show();
@@ -104,7 +104,7 @@ void blueBreathe()
       FastLED.show();
       delay(30);
     }
-    for (int i = 0; i<254; i--)
+    for (int i = 254; i>0; i--)
     {
       allSet(0,0,i);
       FastLED.show();
@@ -127,7 +127,7 @@ void redPulse()
       FastLED.show();
       delay(20);
     }
-    for (int i = 0; i<254; i--)
+    for (int i = 254; i>0; i--)
     {
       allSet(i,0,0);
       FastLED.show();
@@ -137,17 +137,72 @@ void redPulse()
 }
 void bluePulse()
 {
-
+  while (patternID == 67)
+  {  
+    for (int i = 0; i<254; i++)
+    {
+      allSet(0,0,i);
+      FastLED.show();
+      delay(20);
+    }
+    for (int i = 254; i>0; i--)
+    {
+      allSet(0,0,i);
+      FastLED.show();
+      delay(20);
+    }
+  }
 }
 void greenPulse()
 {
-  
+  while (patternID == 69)
+  {  
+    for (int i = 0; i<254; i++)
+    {
+      allSet(0,0,i);
+      FastLED.show();
+      delay(20);
+    }
+    for (int i = 254; i>0; i--)
+    {
+      allSet(0,0,i);
+      FastLED.show();
+      delay(20);
+    }
+  }
 }
 
 void tripleFlash()
 {
+  byte Rval = 254;
+  byte Bval = 0;
+  if (blueAlliance)
+  {
+    Rval = 0;
+    Bval = 254;
+  }
+  for (int i = 0; i<3; i++)
+  {
+    allSet(Rval,0,Bval);
+    FastLED.show();
+    delay(200);
+    allSet(0,0,0);
+    FastLED.show();
+    delay(200);
+  }
+  patternID = 67;
+  if (blueAlliance)
+  {
+    bluePulse();
+  }
+  else
+  {
+    redPulse();
+  }
 }
 
 void makeItRain()
 {
+  //RAINBOW
+  //WILL HAVE TO LOOK UP  
 }
