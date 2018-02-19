@@ -7,7 +7,7 @@
 
 const int addrs[] = {65,67,69,71,73,75};
 bool blueAlliance = false;
-int patternID = 0;
+int patternID = 69;
 
 //Instance LED Strip LED array.
 CRGB leds[LED_COUNT];
@@ -24,10 +24,10 @@ void setup() {
     blueAlliance = true;
   }*/
   FastLED.addLeds<WS2812,LED_PIN,GRB>(leds,LED_COUNT);
-  redBreathe();
 }
 
 void loop() {
+  tripleFlash();
 }
 
 void onRecv(int howMany)
@@ -130,14 +130,12 @@ void redPulse()
     for (int i = 0; i<254; i++)
     {
       allSet(i,0,0);
-      FastLED.show();
-      delay(20);
+      delay(5);
     }
     for (int i = 254; i>0; i--)
     {
       allSet(i,0,0);
-      FastLED.show();
-      delay(20);
+      delay(5);
     }
   }
 }
@@ -148,14 +146,12 @@ void bluePulse()
     for (int i = 0; i<254; i++)
     {
       allSet(0,0,i);
-      FastLED.show();
-      delay(20);
+      delay(5);
     }
     for (int i = 254; i>0; i--)
     {
       allSet(0,0,i);
-      FastLED.show();
-      delay(20);
+      delay(5);
     }
   }
 }
@@ -165,15 +161,15 @@ void greenPulse()
   {  
     for (int i = 0; i<254; i++)
     {
-      allSet(0,0,i);
+      allSet(0,i,0);
       FastLED.show();
-      delay(20);
+      delay(5);
     }
     for (int i = 254; i>0; i--)
     {
-      allSet(0,0,i);
+      allSet(0,i,0);
       FastLED.show();
-      delay(20);
+      delay(5);
     }
   }
 }
@@ -190,10 +186,8 @@ void tripleFlash()
   for (int i = 0; i<3; i++)
   {
     allSet(Rval,0,Bval);
-    FastLED.show();
     delay(200);
     allSet(0,0,0);
-    FastLED.show();
     delay(200);
   }
   patternID = 67;
