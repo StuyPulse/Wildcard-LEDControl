@@ -1,6 +1,3 @@
-Set the switch to ON for Red Alliance
-Set the switch to OFF for Blue Alliance
-
 #UNDERLIGHTING#
 Underlighting Address: 10
 DO NOT SEND 10 TO THIS DEVICE
@@ -10,6 +7,7 @@ Breathe
 
 #Will have to test things. If sending the numbers to byte dont work, send individual characters instead.
 Sent Byte:		Pattern:
+	 ?  63		To set our alliance to Blue Alliance (default Red)
 13 o A	65		All Off
 15 o C	67		Match Pulse
 17 o E	69		Pulse Green
