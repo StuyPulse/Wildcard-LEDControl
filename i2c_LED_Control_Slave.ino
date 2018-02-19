@@ -26,7 +26,7 @@ void recvEvent(int howMany)
 {
   if (Wire.available())
   {
-    patternID = Wire.read();
+    patternID = (byte) Wire.read();
 	//For trimming address byte sent by the Roborio.
     if (patternID == SELF_ADDRESS)
     {
