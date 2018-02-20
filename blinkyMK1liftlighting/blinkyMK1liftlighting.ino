@@ -1,11 +1,11 @@
 #include <Wire.h>
 #include <FastLED.h>
 #define LED_COUNT 10
-#define LED_PIN 13
-#define SELF_ADDRESS 98
+#define LED_PIN 11
+#define SELF_ADDRESS 97
 
 const int addrs[] = {65,67,69,71,73,75};
-bool blueAlliance = true;
+bool blueAlliance = false;
 int patternID = 69;
 
 //Instance LED Strip LED array.
@@ -16,6 +16,11 @@ void setup() {
   Wire.onReceive(onRecv);
   Serial.begin(9600);
   Serial.println(F("UL blinky mk1: initialized."));
+  /*
+  if (analogRead(sensePin) > 750)
+  {
+    blueAlliance = true;
+  }*/
   FastLED.addLeds<WS2812,LED_PIN,GRB>(leds,LED_COUNT);
 }
 
@@ -198,9 +203,4 @@ void makeItRain()
 {
   //RAINBOW
   //WILL HAVE TO LOOK UP  
-}
-
-void purpleScroll()
-{
-
 }
