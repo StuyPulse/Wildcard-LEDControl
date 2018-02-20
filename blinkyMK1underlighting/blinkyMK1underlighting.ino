@@ -1,11 +1,11 @@
 #include <Wire.h>
 #include <FastLED.h>
 #define LED_COUNT 10
-#define LED_PIN 13
+#define LED_PIN 11
 #define SELF_ADDRESS 98
 
 const int addrs[] = {65,67,69,71,73,75};
-bool blueAlliance = true;
+bool blueAlliance = false;
 int patternID = 69;
 
 //Instance LED Strip LED array.

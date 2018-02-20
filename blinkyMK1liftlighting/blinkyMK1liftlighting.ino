@@ -1,11 +1,11 @@
 #include <Wire.h>
 #include <FastLED.h>
 #define LED_COUNT 10
-#define LED_PIN 11
+#define LED_PIN 13
 #define SELF_ADDRESS 97
 
 const int addrs[] = {65,67,69,71,73,75};
-bool blueAlliance = false;
+bool blueAlliance = true;
 int patternID = 69;
 
 //Instance LED Strip LED array.
@@ -15,7 +15,7 @@ void setup() {
   Wire.begin(SELF_ADDRESS);
   Wire.onReceive(onRecv);
   Serial.begin(9600);
-  Serial.println(F("UL blinky mk1: initialized."));
+  Serial.println(F("LL blinky mk1: initialized."));
   /*
   if (analogRead(sensePin) > 750)
   {
