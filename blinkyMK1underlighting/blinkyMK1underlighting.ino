@@ -20,14 +20,14 @@ void setup() {
 }
 
 void loop() {
-  tripleFlash();
+
 }
 
 void onRecv(int howMany)
 {
   if (Wire.available())
   {
-    patternID = (byte) Wire.read();
+    patternID = Wire.read();
     Serial.println(patternID);
     switch(patternID)
     {
