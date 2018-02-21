@@ -1,3 +1,5 @@
+//For one closer to capacitor
+
 #include <Wire.h>
 #include <FastLED.h>
 #define LED_COUNT 10

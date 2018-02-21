@@ -1,3 +1,5 @@
+//For one closer to header
+
 #include <Wire.h>
 #include <FastLED.h>
 #define LED_COUNT 10
@@ -17,6 +19,7 @@ void setup() {
   Serial.begin(9600);
   Serial.println(F("UL blinky mk1: initialized."));
   FastLED.addLeds<WS2812,LED_PIN,GRB>(leds,LED_COUNT);
+  greenPulse();
 }
 
 void loop() {
