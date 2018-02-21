@@ -1,18 +1,17 @@
 #UNDERLIGHTING#
-Underlighting Address: 10
-DO NOT SEND 10 TO THIS DEVICE
+Underlighting Address: 13
+DO NOT SEND 13 TO THIS DEVICE
 
 PreMatch/Waiting Pattern:
 Breathe
 
-SEND THE CHARACTERS, NOT THE NUMBERS. E.g. send '?'
+SEND THE CHARACTERS, NOT THE NUMBERS. Cast to byte if necessary. E.g. send '?'
 
-#Will have to test things. If sending the numbers to byte dont work, send individual characters instead.
 Sent Byte:		Pattern:
-     ?  63		To set our alliance to Blue Alliance (default Red)
-13 o A	65		All Off
-15 o C	67		Match Pulse
-17 o E	69		Pulse Green
-19 o G	71		Solid Green
-21 o I	73		Match Triple Flash (For a just opened grabber / dropped power cube. Will return to Match pulse)
-23 o K	75		Rainbow
+?	63		To set our alliance to Blue Alliance (default Red)
+A   65		All Off
+C	67		Match Pulse
+E	69		Pulse Green
+G	71		Solid Green
+I	73		Match Triple Flash (For a just opened grabber / dropped power cube. Will return to Match pulse)
+K	75		Rainbow
