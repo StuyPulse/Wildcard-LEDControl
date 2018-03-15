@@ -46,7 +46,7 @@ void recvEvent(int numBytes)
 {
   if (Wire.available())
   {
-    
+     Serial.print(numBytes);Serial.println(" bytes available");
   }
 }
 
