@@ -20,15 +20,10 @@ void setup()
   Serial.begin(9600);
   Serial.println(F("BMK2: Initialized :)"));
   FastLED.addLeds<WS2812,ULPIN,GRB>(ULleds,ULLEDCOUNT);
-  allSet(244,0,0,ULleds);
+  allSet(244,0,0,&ULleds);
 }
 void loop()
 {
-  for (int i = 0; i<ULLEDCOUNT; i++)
-  {
-    ULleds[i] = CRGB(244,0,0);
-  }
-  FastLED.show();
   digitalWrite(6,HIGH);
   delay(300);
   digitalWrite(6,LOW);
@@ -40,7 +35,7 @@ void recvEvent(int numBytes)
 
 }
 
-void allSet(int R, int G, int B, CRGB arr[])
+void allSet(int R, int G, int B, CRGB *arr)
 {
   int ledCount = sizeof(arr)/sizeof(arr[0]);
   for (int index = 0; index<ledCount; index++)
