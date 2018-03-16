@@ -14,19 +14,21 @@ For the future, if you guys ever want a pretty lit bot :(
 #define ULPIN 7
 #define ULLEDCOUNT 8
 CRGB ULleds[ULLEDCOUNT];
-int ULpat
-int ULhold
+int ULpat;
+int ULhold;
 
 #define LLPIN 5
 #define LLLEDCOUNT 8
 CRGB LLleds[LLLEDCOUNT];
-int LLpat
-int LLhold
+int LLpat;
+int LLhold;
 
 #define SELF_ADDRESS 98
 
+bool blue = false;
+
 typedef void (*patternList[])();
-patternList actives = {allSet,};
+patternList actives = {pulse,tripleFlash,makeItRain};
 
 void setup()
 {
@@ -39,10 +41,12 @@ void setup()
   FastLED.addLeds<WS2812,LLPIN,GRB>(LLleds,LLLEDCOUNT);
 }
 
+
 void loop()
 {
-  updateFrame(ULpat,LLpat);
-  delay(1000/FPS);
+	updateUL(ULpat);
+	updateLL(LLpat);
+	delay(1000/FPS);
 }
 
 void recvEvent(int numBytes)
@@ -66,11 +70,12 @@ void recvEvent(int numBytes)
   }
 }
 
-void updateFrame(int UL, int LL)
+void updateUL(ULpat)
 {
-  
+	
 }
 
+//Helper functions
 void allSet(int R, int G, int B, int strip)
 {
   if (strip)
