@@ -25,6 +25,9 @@ int LLhold
 
 #define SELF_ADDRESS 98
 
+typedef void (*patternList[])();
+patternList actives = {allSet,};
+
 void setup()
 {
   pinMode(6,OUTPUT);
@@ -40,31 +43,43 @@ void loop()
 {
   updateFrame(ULpat,LLpat);
   delay(1000/FPS);
-} 
+}
 
 void recvEvent(int numBytes)
 {
   if (Wire.available())
   {
      Serial.print(numBytes);Serial.println(" bytes available");
+     byte temp = 0;
+     temp = Wire.read();
+     if (temp == SELF_ADDRESS)
+     {
+      Serial.print("Address Received: ");Serial.println(temp);
+      temp = Wire.read();
+     }
+     if (temp<65 || temp>126)
+     {
+      Serial.print("Invalid value received: ");Serial.println(temp);
+      return;
+     }
+     actives[temp-65]();
   }
+}
+
+void updateFrame(int UL, int LL)
+{
+  
 }
 
 void allSet(int R, int G, int B, int strip)
 {
   if (strip)
   {
-    for (int index = 0; index<LLLEDCOUNT; index++)
-    {
-      LLleds[index] = CRGB(R,G,B);
-    }
+    fill_solid(LLleds,LLLEDCOUNT,CRGB(R,G,B));
   }
   else
   {
-    for (int index = 0; index<ULLEDCOUNT; index++)
-    {
-      ULleds[index] = CRGB(R,G,B);
-    }
+    fill_solid(ULleds,ULLEDCOUNT,CRGB(R,G,B));
   }
   FastLED.show();
 }
