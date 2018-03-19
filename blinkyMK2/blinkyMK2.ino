@@ -10,25 +10,27 @@ For the future, if you guys ever want a pretty lit bot :(
 #include <FastLED.h>
 
 #define FPS 60
+typedef void (*patternList[])();
 
 #define ULPIN 7
 #define ULLEDCOUNT 8
 CRGB ULleds[ULLEDCOUNT];
-int ULpat;
+int ULpat = -1;
 int ULhold;
+patternList ULactives = {ULOff,ULSolidAli};
+
 
 #define LLPIN 5
 #define LLLEDCOUNT 8
 CRGB LLleds[LLLEDCOUNT];
-int LLpat;
+int LLpat = -1;
 int LLhold;
+patternList LLactives = {LLOff,LLSolidAli};
 
 #define SELF_ADDRESS 98
 
 bool blue = false;
 
-typedef void (*patternList[])();
-patternList actives = {pulse,tripleFlash,makeItRain};
 
 void setup()
 {
@@ -44,9 +46,9 @@ void setup()
 
 void loop()
 {
-	updateUL(ULpat);
-	updateLL(LLpat);
-	delay(1000/FPS);
+  updateUL(ULpat);
+  updateLL(LLpat);
+  delay(1000/FPS);
 }
 
 void recvEvent(int numBytes)
@@ -61,18 +63,97 @@ void recvEvent(int numBytes)
       Serial.print("Address Received: ");Serial.println(temp);
       temp = Wire.read();
      }
-     if (temp<65 || temp>126)
+     if (temp<58 || temp>123)
      {
       Serial.print("Invalid value received: ");Serial.println(temp);
       return;
      }
-     actives[temp-65]();
+     if (temp<65)
+     {
+      Serial.print("Non value received: ");Serial.println(temp);
+      if (temp == 63)
+      {
+        blue = !blue;
+        Serial.println("Alliance switched.");
+      }
+     }
+     if (temp>64 && temp<91)
+     {
+      ULpat = temp-65;
+      Serial.print("UL Pattern: ");Serial.println(ULpat);
+     }
+     if (temp>96)
+     {
+      LLpat = temp-97;
+      Serial.print("LL Pattern: ");Serial.println(LLpat);
+     }
+     return;
   }
 }
 
-void updateUL(ULpat)
+void updateUL(pat)
 {
-	
+  if (pat == -1)
+  {
+    return;
+  }
+  else
+  {
+    ULactives[pat]();
+  }
+}
+
+void updateLL(pat)
+{
+  if (pat == -1)
+  {
+    return;
+  }
+  else
+  {
+    LLactives[pats]();
+  }
+}
+
+void ULPulse()
+{
+}
+void LLPulse()
+{ 
+}
+
+//Solid
+void ULSolidAli()
+{
+  if (blue)
+  {
+    allSet(0,0,230,0);
+  }
+  else
+  {
+    allSet(230,0,0,0);
+  }
+}
+void LLSolidAli()
+{
+  if (blue)
+  {
+    allSet(0,0,230,1);
+  }
+  else
+  {
+    allSet(230,0,0,1);
+  }
+}
+
+//Off 
+void ULOff()
+{
+  allSet(0,0,0,0);
+}
+void LLOff()
+{
+  allSet(0,0,0,1);
 }
 
 //Helper functions
@@ -88,3 +169,4 @@ void allSet(int R, int G, int B, int strip)
   }
   FastLED.show();
 }
+
