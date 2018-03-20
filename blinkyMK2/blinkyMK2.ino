@@ -65,7 +65,7 @@ void recvEvent(int numBytes)
      }
      if (temp<58 || temp>123)
      {
-      Serial.print(F("Invalid value received: "));Serial.println(temp);
+      Serial.print(F("!Invalid value received!: "));Serial.println(temp);
       return;
      }
      if (temp<65)
@@ -92,7 +92,7 @@ void recvEvent(int numBytes)
 }
 
 //Update the board with a new pattern/frame
-void updateUL(pat)
+void updateUL(int pat)
 {
   if (pat == -1)
   {
@@ -104,7 +104,7 @@ void updateUL(pat)
   }
 }
 
-void updateLL(pat)
+void updateLL(int pat)
 {
   if (pat == -1)
   {
