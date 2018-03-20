@@ -111,7 +111,7 @@ void updateLL(pat)
   }
   else
   {
-    LLactives[pats]();
+    LLactives[pat]();
   }
 }
 
