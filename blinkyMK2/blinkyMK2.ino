@@ -17,7 +17,7 @@ typedef void (*patternList[])();
 CRGB ULleds[ULLEDCOUNT];
 int ULpat = -1;
 int ULhold;
-patternList ULactives = {ULOff,ULSolidAli};
+patternList ULactives = {ULOff,ULSolidA};
 
 
 #define LLPIN 5
@@ -25,22 +25,21 @@ patternList ULactives = {ULOff,ULSolidAli};
 CRGB LLleds[LLLEDCOUNT];
 int LLpat = -1;
 int LLhold;
-patternList LLactives = {LLOff,LLSolidAli};
+patternList LLactives = {LLOff,LLSolidA};
 
-#define SELF_ADDRESS 98
+#define SELF_ADDRESS 95
 
 bool blue = false;
 
 
 void setup()
 {
-  pinMode(6,OUTPUT);
   Wire.begin(SELF_ADDRESS);
   Wire.onReceive(recvEvent);
-  Serial.begin(9600);
-  Serial.println(F("BMK2: Initialized :)"));
   FastLED.addLeds<WS2812,ULPIN,GRB>(ULleds,ULLEDCOUNT);
   FastLED.addLeds<WS2812,LLPIN,GRB>(LLleds,LLLEDCOUNT);
+  Serial.begin(9600);
+  Serial.println(F("BMK2: Initialized, accepting fan mail"));
 }
 
 
@@ -49,48 +48,50 @@ void loop()
   updateUL(ULpat);
   updateLL(LLpat);
   delay(1000/FPS);
+  FastLED.show();
 }
 
 void recvEvent(int numBytes)
 {
   if (Wire.available())
   {
-     Serial.print(numBytes);Serial.println(" bytes available");
+     Serial.print(numBytes);Serial.println(F(" bytes available"));
      byte temp = 0;
      temp = Wire.read();
      if (temp == SELF_ADDRESS)
      {
-      Serial.print("Address Received: ");Serial.println(temp);
+      Serial.print(F("Address received: "));Serial.println(temp);
       temp = Wire.read();
      }
      if (temp<58 || temp>123)
      {
-      Serial.print("Invalid value received: ");Serial.println(temp);
+      Serial.print(F("Invalid value received: "));Serial.println(temp);
       return;
      }
      if (temp<65)
      {
-      Serial.print("Non value received: ");Serial.println(temp);
+      Serial.print(F("Non pattern value received: "));Serial.println(temp);
       if (temp == 63)
       {
         blue = !blue;
-        Serial.println("Alliance switched.");
+        Serial.println(F("Alliance switched."));
       }
      }
      if (temp>64 && temp<91)
      {
       ULpat = temp-65;
-      Serial.print("UL Pattern: ");Serial.println(ULpat);
+      Serial.print(F("UL Pattern: "));Serial.println(ULpat);
      }
      if (temp>96)
      {
       LLpat = temp-97;
-      Serial.print("LL Pattern: ");Serial.println(LLpat);
+      Serial.print(F("LL Pattern: "));Serial.println(LLpat);
      }
      return;
   }
 }
 
+//Update the board with a new pattern/frame
 void updateUL(pat)
 {
   if (pat == -1)
@@ -115,6 +116,7 @@ void updateLL(pat)
   }
 }
 
+//Pulse
 void ULPulse()
 {
 }
@@ -122,8 +124,8 @@ void LLPulse()
 { 
 }
 
-//Solid
-void ULSolidAli()
+//Solid Alliance Color
+void ULSolidA()
 {
   if (blue)
   {
@@ -134,7 +136,7 @@ void ULSolidAli()
     allSet(230,0,0,0);
   }
 }
-void LLSolidAli()
+void LLSolidA()
 {
   if (blue)
   {
@@ -167,6 +169,5 @@ void allSet(int R, int G, int B, int strip)
   {
     fill_solid(ULleds,ULLEDCOUNT,CRGB(R,G,B));
   }
-  FastLED.show();
 }
 
