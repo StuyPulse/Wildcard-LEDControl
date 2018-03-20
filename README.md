@@ -34,7 +34,11 @@ The very first prototype of the code for the slave device controlled by the robo
 ### i2c_LED_Control_Slave_MemoryHappy.ino:
 Essentially i2c_LED_Control_Slave.ino but uses the MemoryFree.h library. It is just to fully verify that there will be no memory problems.
 
+### blinkyMK1 
+The code for blinkyMK1, only controls the underlighting. Deprecated, not recommended.
 
+### blinkyMK2
+The code for blinkyMK2, in progress. Use :)
 
 Good luck with your lighting!
 
