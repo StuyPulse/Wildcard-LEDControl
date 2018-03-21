@@ -1,7 +1,7 @@
 /*
 Made by DOE Brian Leung - Class of 2018
 
-Made for Teensy++ 2.0 and (will post board layout)
+Made for Teensy++ 2.0
 
 For the future, if you guys ever want a pretty lit bot :(
 */
@@ -17,6 +17,8 @@ typedef void (*patternList[])();
 CRGB ULleds[ULLEDCOUNT];
 int ULpat = -1;
 int ULhold;
+void ULOff();
+void ULSolidA();
 patternList ULactives = {ULOff,ULSolidA};
 
 
@@ -25,6 +27,8 @@ patternList ULactives = {ULOff,ULSolidA};
 CRGB LLleds[LLLEDCOUNT];
 int LLpat = -1;
 int LLhold;
+void LLOff();
+void LLSolidA();
 patternList LLactives = {LLOff,LLSolidA};
 
 #define SELF_ADDRESS 95
@@ -34,6 +38,8 @@ bool blue = false;
 
 void setup()
 {
+  pinMode(6,OUTPUT);
+  digitalWrite(6,HIGH);
   Wire.begin(SELF_ADDRESS);
   Wire.onReceive(recvEvent);
   FastLED.addLeds<WS2812,ULPIN,GRB>(ULleds,ULLEDCOUNT);
