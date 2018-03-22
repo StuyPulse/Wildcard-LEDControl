@@ -5,9 +5,7 @@ Made for Teensy++ 2.0
 
 For the future, if you guys ever want a pretty lit bot :(
 */
-
-#include <Wire.h>
-#include <FastLED.h>
+#include "Patterns.h"
 
 #define FPS 60
 typedef void (*patternList[])();
@@ -16,9 +14,7 @@ typedef void (*patternList[])();
 #define ULLEDCOUNT 8
 CRGB ULleds[ULLEDCOUNT];
 int ULpat = -1;
-int ULhold;
-void ULOff();
-void ULSolidA();
+int ULhold = -1;
 patternList ULactives = {ULOff,ULSolidA};
 
 
@@ -26,15 +22,12 @@ patternList ULactives = {ULOff,ULSolidA};
 #define LLLEDCOUNT 8
 CRGB LLleds[LLLEDCOUNT];
 int LLpat = -1;
-int LLhold;
-void LLOff();
-void LLSolidA();
+int LLhold = -1;
 patternList LLactives = {LLOff,LLSolidA};
 
 #define SELF_ADDRESS 95
 
 bool blue = false;
-
 
 void setup()
 {
@@ -122,15 +115,6 @@ void updateLL(int pat)
   }
 }
 
-//Pulse
-void ULPulse()
-{
-}
-void LLPulse()
-{ 
-}
-
-//Solid Alliance Color
 void ULSolidA()
 {
   if (blue)
@@ -164,6 +148,22 @@ void LLOff()
   allSet(0,0,0,1);
 }
 
+//Pulse
+void ULPulse()
+{
+  if (blue)
+  {
+    
+  }
+}
+void LLPulse()
+{
+  if (blue)
+  {
+    
+  }
+}
+
 //Helper functions
 void allSet(int R, int G, int B, int strip)
 {
@@ -176,4 +176,3 @@ void allSet(int R, int G, int B, int strip)
     fill_solid(ULleds,ULLEDCOUNT,CRGB(R,G,B));
   }
 }
-
