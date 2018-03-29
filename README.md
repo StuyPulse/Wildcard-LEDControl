@@ -40,6 +40,14 @@ The code for blinkyMK1, only controls the underlighting. Deprecated, not recomme
 ### blinkyMK2
 The code for blinkyMK2, in progress. Use :)
 
+See layout: 
+White wire - SDA
+Red wire - SCL
+Black wire - GND
+
+Port closest to green terminal - for Underlighting
+Other 2 ports - for Liftlighting
+
 Good luck with your lighting!
 
 
