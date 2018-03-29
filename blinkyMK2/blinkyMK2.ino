@@ -19,7 +19,7 @@ patternList ULactives = {ULOff,ULSolidA};
 
 
 #define LLPIN 5
-#define LLLEDCOUNT 8
+#define LLLEDCOUNT 12
 CRGB LLleds[LLLEDCOUNT];
 int LLpat = -1;
 int LLhold = -1;
