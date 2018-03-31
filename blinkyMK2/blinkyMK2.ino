@@ -119,6 +119,7 @@ void updateLL(int pat)
   }
 }
 
+//Display alliance color
 void ULSolidA()
 {
   if (blue)
