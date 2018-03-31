@@ -17,15 +17,15 @@ typedef void (*patternList[])();
 CRGB ULleds[ULLEDCOUNT];
 int ULpat = -1;
 int ULhold = -1;
-patternList ULactives = {ULOff,ULSolidA};
+patternList ULactives = {ULOff,ULSolidA,ULPulse,ULRainbow};
 
 
 #define LLPIN 5
-#define LLLEDCOUNT 12
+#define LLLEDCOUNT 7
 CRGB LLleds[LLLEDCOUNT];
 int LLpat = -1;
 int LLhold = -1;
-patternList LLactives = {LLOff,LLSolidA};
+patternList LLactives = {LLOff,LLSolidA,LLPulse,LLRainbow};
 
 #define SELF_ADDRESS 95
 
@@ -58,6 +58,7 @@ void recvEvent(int numBytes)
 {
   if (Wire.available())
   {
+     Serial.print(LLleds[0].red);
      Serial.print(numBytes);Serial.println(F(" bytes available"));
      byte temp = 0;
      temp = Wire.read();
@@ -165,8 +166,52 @@ void LLPulse()
 {
   if (blue)
   {
-    
+    if (LLhold == -1)
+    {
+      if (LLleds[0].blue == 240)
+      {
+        LLhold = 1;
+      }
+      allSet(0,0,LLleds[0].blue+1,1);
+    }
+    else
+    {
+      if (LLleds[0].blue == 1)
+      {
+        LLhold = -1;
+      }
+      allSet(0,0,LLleds[0].blue-1,1);
+    }
   }
+  else
+  {
+    if (LLhold == -1)
+    {
+      if (LLleds[0].red == 240)
+      {
+        LLhold = 1;
+      }
+      allSet(LLleds[0].red+1,0,0,1);
+    }
+    else
+    {
+      if (LLleds[0].red == 1)
+      {
+        LLhold = -1;
+      }
+      allSet(LLleds[0].red-1,0,0,1);
+    }
+  } 
+}
+
+//Rainbow
+void ULRainbow()
+{
+  //fill_rainbow(ULleds,ULLEDCOUNT,0,10);
+}
+void LLRainbow()
+{
+  //fill_rainbow(LLleds,LLLEDCOUNT,0,10);
 }
 
 //Helper functions

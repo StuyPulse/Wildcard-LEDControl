@@ -7,3 +7,5 @@ void ULSolidA();
 void LLSolidA();
 void ULPulse();
 void LLPulse();
+void ULRainbow();
+void LLRainbow();
