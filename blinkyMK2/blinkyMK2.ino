@@ -8,6 +8,8 @@ For the future, if you guys ever want a pretty lit bot :(
 #include "Patterns.h"
 
 #define FPS 60
+int const frameLife = 1000/FPS;
+unsigned long prevMillis = 0;
 typedef void (*patternList[])();
 
 #define ULPIN 7
@@ -44,10 +46,12 @@ void setup()
 
 void loop()
 {
-  updateUL(ULpat);
-  updateLL(LLpat);
-  delay(1000/FPS);
-  FastLED.show();
+  if (millis() - prevMillis == frameLife)
+  {
+    updateUL(ULpat);
+    updateLL(LLpat);
+    FastLED.show();
+  }
 }
 
 void recvEvent(int numBytes)
