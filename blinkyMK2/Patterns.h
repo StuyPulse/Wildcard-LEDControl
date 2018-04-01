@@ -70,81 +70,82 @@ void LLSolidA()
 void ULPulse()
 {
 if (blue)
-  {
+{
     if (ULhold == -1)
     {
+      allSet(0,0,ULleds[0].blue+3,0);
       if (ULleds[0].blue >= 230)
       {
         ULhold = 1;
       }
-      allSet(0,0,ULleds[0].blue+5,0);
     }
     else
     {
+      allSet(0,0,ULleds[0].blue-3,0);
       if (ULleds[0].blue <= 10)
       {
         ULhold = -1;
       }
-      allSet(0,0,ULleds[0].blue-5,0);
     }
   }
   else
   {
     if (ULhold == -1)
     {
+      allSet(ULleds[0].red+3,0,0,0);
       if (ULleds[0].red >= 230)
       {
         ULhold = 1;
       }
-      allSet(ULleds[0].red+5,0,0,0);
     }
     else
     {
+      allSet(ULleds[0].red-3,0,0,0);
       if (ULleds[0].red <= 10)
       {
         ULhold = -1;
       }
-      allSet(ULleds[0].red-5,0,0,0);
     }
-  }}
+  }
+}
 void LLPulse()
 {
   if (blue)
   {
     if (LLhold == -1)
     {
+      allSet(0,0,LLleds[0].blue+3,1);
       if (LLleds[0].blue >= 230)
       {
         LLhold = 1;
       }
-      allSet(0,0,LLleds[0].blue+5,1);
     }
     else
     {
+      allSet(0,0,LLleds[0].blue-3,1);
       if (LLleds[0].blue <= 10)
       {
         LLhold = -1;
       }
-      allSet(0,0,LLleds[0].blue-5,1);
     }
   }
   else
   {
     if (LLhold == -1)
     {
+      allSet(LLleds[0].red+3,0,0,1);
       if (LLleds[0].red >= 230)
       {
         LLhold = 1;
       }
-      allSet(LLleds[0].red+5,0,0,1);
     }
     else
     {
+      allSet(LLleds[0].red-3,0,0,1);
       if (LLleds[0].red <= 10)
       {
         LLhold = -1;
       }
-      allSet(LLleds[0].red-5,0,0,1);
     }
   } 
 }

@@ -44,7 +44,9 @@ void loop()
 void recvEvent(int numBytes)
 {
   if (Wire.available())
-  {
+  { 
+     ULOff();
+     LLOff();
      Serial.print(numBytes);Serial.println(F(" bytes available"));
      byte temp = 0;
      temp = Wire.read();
@@ -63,8 +65,6 @@ void recvEvent(int numBytes)
       Serial.print(F("Non pattern value received: "));Serial.println(temp);
       if (temp == 63)
       {
-        ULOff();
-        LLOff();
         blue = !blue;
         Serial.println(F("Alliance switched."));
       }
