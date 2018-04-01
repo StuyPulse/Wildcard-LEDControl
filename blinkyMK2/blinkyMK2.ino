@@ -4,11 +4,13 @@ Made by DOE Brian Leung - Class of 2018
 Made for Teensy++ 2.0
 
 For the future, if you guys ever want a pretty lit bot :(
+
+Youre gonna need the Patterns.h file.
 */
 #include "Patterns.h"
 
-patternList ULactives = {ULOff,ULSolidA,ULPulse,ULRainbow};
-patternList LLactives = {LLOff,LLSolidA,LLPulse,LLRainbow};
+patternList ULactives = {ULOff,ULSolidA,ULPulse,ULRainbow,ULPopo};
+patternList LLactives = {LLOff,LLSolidA,LLPulse,LLRainbow,LLPopo};
 
 unsigned long prevMillis = 0;
 int ULpat = -1;

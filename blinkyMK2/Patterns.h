@@ -1,3 +1,12 @@
+/*
+Made by DOE Brian Leung - Class of 2018
+
+Made for Teensy++ 2.0
+
+For the future, if you guys ever want a pretty lit bot :(
+
+Youre gonna need the blinkyMK2.ino file.
+*/
 #include <FastLED.h>
 #include <Wire.h>
 
@@ -150,7 +159,7 @@ void LLPulse()
   } 
 }
 
-//Rainbow
+//Rainbow scroll
 void ULRainbow()
 {
   fill_rainbow(ULleds,ULLEDCOUNT,0,10);
@@ -158,4 +167,75 @@ void ULRainbow()
 void LLRainbow()
 {
   fill_rainbow(LLleds,LLLEDCOUNT,0,10);
+}
+
+//"hey mr moran that other bot is hiding a phone" 
+void ULPopo()
+{
+  if (ULhold <= 12)
+  {
+    ULhold+=1;
+    return;
+  }
+  else
+  {
+    for (int i = 0; i<ULLEDCOUNT/2; i++)
+    {
+      if (ULleds[i].red == 239)
+      {
+        ULleds[i] = CRGB(0,0,239);
+      }
+      else
+      {
+        ULleds[i] = CRGB(239,0,0);
+      }
+    }
+    for (int i = ULLEDCOUNT/2; i<LULEDCOUNT; i++)
+    {
+      if (ULleds[i].blue == 239)
+      {
+        ULleds[i] = CRGB(239,0,0);
+      }
+      else
+      {
+        ULleds[i] = CRGB(0,0,239);
+      }
+    }
+    ULhold = -1;
+  }
+
+}
+void LLPopo()
+{
+  if (LLhold <= 12)
+  {
+    LLhold+=1;
+    return;
+  }
+  else
+  {
+    for (int i = 0; i<LLLEDCOUNT/2; i++)
+    {
+      if (LLleds[i].red == 239)
+      {
+        LLleds[i] = CRGB(0,0,239);
+      }
+      else
+      {
+        LLleds[i] = CRGB(239,0,0);
+      }
+    }
+    for (int i = LLLEDCOUNT/2; i<LLLEDCOUNT; i++)
+    {
+      if (LLleds[i].blue == 239)
+      {
+        LLleds[i] = CRGB(239,0,0);
+      }
+      else
+      {
+        LLleds[i] = CRGB(0,0,239);
+      }
+    }
+    LLhold = -1;
+  }
 }
