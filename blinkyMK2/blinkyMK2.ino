@@ -41,13 +41,16 @@ void setup()
   FastLED.addLeds<WS2812,LLPIN,GRB>(LLleds,LLLEDCOUNT);
   Serial.begin(9600);
   Serial.println(F("BMK2: Initialized, accepting fan mail"));
+  prevMillis = millis();
 }
 
 
 void loop()
 {
-  if (millis() - prevMillis == frameLife)
+  if (millis() - prevMillis >= frameLife)
   {
+    Serial.println("Fired");
+    prevMillis = millis();
     updateUL(ULpat);
     updateLL(LLpat);
     FastLED.show();
@@ -58,7 +61,6 @@ void recvEvent(int numBytes)
 {
   if (Wire.available())
   {
-     Serial.print(LLleds[0].red);
      Serial.print(numBytes);Serial.println(F(" bytes available"));
      byte temp = 0;
      temp = Wire.read();
