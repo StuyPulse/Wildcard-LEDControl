@@ -10,6 +10,11 @@ For the future, if you guys ever want a pretty lit bot :(
 patternList ULactives = {ULOff,ULSolidA,ULPulse,ULRainbow};
 patternList LLactives = {LLOff,LLSolidA,LLPulse,LLRainbow};
 
+unsigned long prevMillis = 0;
+int ULpat = -1;
+int LLpat = -1;
+
+
 void setup()
 {
   pinMode(6,OUTPUT);

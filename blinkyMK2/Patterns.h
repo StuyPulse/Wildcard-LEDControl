@@ -9,15 +9,12 @@
 #define LLLEDCOUNT 7
 
 int const frameLife = 1000/FPS;
-unsigned long prevMillis = 0;
 typedef void (*patternList[])();
 
 CRGB ULleds[ULLEDCOUNT];
-int ULpat = -1;
 int ULhold = -1;
 
 CRGB LLleds[LLLEDCOUNT];
-int LLpat = -1;
 int LLhold = -1;
 
 bool blue = false;
