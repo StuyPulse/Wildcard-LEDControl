@@ -7,29 +7,8 @@ For the future, if you guys ever want a pretty lit bot :(
 */
 #include "Patterns.h"
 
-#define FPS 60
-int const frameLife = 1000/FPS;
-unsigned long prevMillis = 0;
-typedef void (*patternList[])();
-
-#define ULPIN 7
-#define ULLEDCOUNT 8
-CRGB ULleds[ULLEDCOUNT];
-int ULpat = -1;
-int ULhold = -1;
 patternList ULactives = {ULOff,ULSolidA,ULPulse,ULRainbow};
-
-
-#define LLPIN 5
-#define LLLEDCOUNT 7
-CRGB LLleds[LLLEDCOUNT];
-int LLpat = -1;
-int LLhold = -1;
 patternList LLactives = {LLOff,LLSolidA,LLPulse,LLRainbow};
-
-#define SELF_ADDRESS 95
-
-bool blue = false;
 
 void setup()
 {
@@ -41,6 +20,7 @@ void setup()
   FastLED.addLeds<WS2812,LLPIN,GRB>(LLleds,LLLEDCOUNT);
   Serial.begin(9600);
   Serial.println(F("BMK2: Initialized, accepting fan mail"));
+  Serial.print(F("Start up time: "));Serial.println(millis());
   prevMillis = millis();
 }
 
@@ -49,7 +29,6 @@ void loop()
 {
   if (millis() - prevMillis >= frameLife)
   {
-    Serial.println("Fired");
     prevMillis = millis();
     updateUL(ULpat);
     updateLL(LLpat);
@@ -79,6 +58,8 @@ void recvEvent(int numBytes)
       Serial.print(F("Non pattern value received: "));Serial.println(temp);
       if (temp == 63)
       {
+        ULOff();
+        LLOff();
         blue = !blue;
         Serial.println(F("Alliance switched."));
       }
@@ -119,112 +100,5 @@ void updateLL(int pat)
   else
   {
     LLactives[pat]();
-  }
-}
-
-//Display alliance color
-void ULSolidA()
-{
-  if (blue)
-  {
-    allSet(0,0,230,0);
-  }
-  else
-  {
-    allSet(230,0,0,0);
-  }
-}
-void LLSolidA()
-{
-  if (blue)
-  {
-    allSet(0,0,230,1);
-  }
-  else
-  {
-    allSet(230,0,0,1);
-  }
-}
-
-//Off 
-void ULOff()
-{
-  allSet(0,0,0,0);
-}
-void LLOff()
-{
-  allSet(0,0,0,1);
-}
-
-//Pulse
-void ULPulse()
-{
-  if (blue)
-  {
-    
-  }
-}
-void LLPulse()
-{
-  if (blue)
-  {
-    if (LLhold == -1)
-    {
-      if (LLleds[0].blue == 240)
-      {
-        LLhold = 1;
-      }
-      allSet(0,0,LLleds[0].blue+1,1);
-    }
-    else
-    {
-      if (LLleds[0].blue == 1)
-      {
-        LLhold = -1;
-      }
-      allSet(0,0,LLleds[0].blue-1,1);
-    }
-  }
-  else
-  {
-    if (LLhold == -1)
-    {
-      if (LLleds[0].red == 240)
-      {
-        LLhold = 1;
-      }
-      allSet(LLleds[0].red+1,0,0,1);
-    }
-    else
-    {
-      if (LLleds[0].red == 1)
-      {
-        LLhold = -1;
-      }
-      allSet(LLleds[0].red-1,0,0,1);
-    }
-  } 
-}
-
-//Rainbow
-void ULRainbow()
-{
-  //fill_rainbow(ULleds,ULLEDCOUNT,0,10);
-}
-void LLRainbow()
-{
-  //fill_rainbow(LLleds,LLLEDCOUNT,0,10);
-}
-
-//Helper functions
-void allSet(int R, int G, int B, int strip)
-{
-  if (strip)
-  {
-    fill_solid(LLleds,LLLEDCOUNT,CRGB(R,G,B));
-  }
-  else
-  {
-    fill_solid(ULleds,ULLEDCOUNT,CRGB(R,G,B));
   }
 }
