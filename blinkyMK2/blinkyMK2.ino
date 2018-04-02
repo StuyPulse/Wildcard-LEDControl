@@ -9,12 +9,16 @@ Youre gonna need the Patterns.h file.
 */
 #include "Patterns.h"
 
+//Lists of pattern functions here, makes it slightly easier to add new patterns.
 patternList ULactives = {ULOff,ULSolidA,ULPulse,ULRainbow,ULPopo};
 patternList LLactives = {LLOff,LLSolidA,LLPulse,LLRainbow,LLPopo};
 
+//For timing
 unsigned long prevMillis = 0;
-int ULpat = -1;
-int LLpat = -1;
+
+//For tracking pattern numbers
+int ULpat = 0;
+int LLpat = 0;
 
 
 void setup()
@@ -27,21 +31,27 @@ void setup()
   FastLED.addLeds<WS2812,LLPIN,GRB>(LLleds,LLLEDCOUNT);
   Serial.begin(9600);
   Serial.println(F("BMK2: Initialized, accepting fan mail"));
-  Serial.print(F("Start up time: "));Serial.println(millis());
+  Serial.print(F("BMK2: Start up time (ms): "));Serial.println(millis());
   prevMillis = millis();
 }
 
-
+//You can modify frameLife in the header by modifying FPS.
 void loop()
 {
   if (millis() - prevMillis >= frameLife)
   {
+    //Update the board with a new pattern/frame
     prevMillis = millis();
-    updateUL(ULpat);
-    updateLL(LLpat);
+    ULactives[ULpat]();
+    LLactives[LLpat]();    
     FastLED.show();
   }
 }
+
+//Lowercase characters will control the liftlighting: "a" for ULactives[0], "b" for ULactives[1], etc.
+//Uppercase characters will control the underlighting.
+
+//Will trim address bytes from the roborio.
 
 void recvEvent(int numBytes)
 {
@@ -49,7 +59,7 @@ void recvEvent(int numBytes)
   { 
      ULOff();
      LLOff();
-     Serial.print(numBytes);Serial.println(F(" bytes available"));
+     Serial.println(F("Bytes available: "));Serial.print(numBytes);
      byte temp = 0;
      temp = Wire.read();
      if (temp == SELF_ADDRESS)
@@ -82,30 +92,5 @@ void recvEvent(int numBytes)
       Serial.print(F("LL Pattern: "));Serial.println(LLpat);
      }
      return;
-  }
-}
-
-//Update the board with a new pattern/frame
-void updateUL(int pat)
-{
-  if (pat == -1)
-  {
-    return;
-  }
-  else
-  {
-    ULactives[pat]();
-  }
-}
-
-void updateLL(int pat)
-{
-  if (pat == -1)
-  {
-    return;
-  }
-  else
-  {
-    LLactives[pat]();
   }
 }
