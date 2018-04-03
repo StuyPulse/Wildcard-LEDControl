@@ -170,8 +170,7 @@ void LLRainbow()
 {
   fill_rainbow(LLleds,LLLEDCOUNT,0,10);
 }
-
-//"hey mr moran that other bot is hiding a phone" 
+ 
 void ULPopo()
 {
   if (ULhold <= 12)
