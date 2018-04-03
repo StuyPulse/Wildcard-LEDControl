@@ -18,7 +18,7 @@ Youre gonna need the blinkyMK2.ino file.
 #define ULLEDCOUNT 8
 #define LLPIN 5
 #define LLLEDCOUNT 7
-#define frameLife 1000/FPS;
+#define frameLife 1000/FPS
 
 typedef void (*patternList[])();
 
@@ -76,6 +76,16 @@ void LLSolidA()
     allSet(230,0,0,1);
   }
 }
+
+void ULSolidG()
+{
+  allSet(13,200,13,0);
+}
+void LLSolidG()
+{
+  allSet(13,200,13,1);
+}
+
 
 //Pulse
 void ULPulse()
@@ -170,7 +180,8 @@ void LLRainbow()
 {
   fill_rainbow(LLleds,LLLEDCOUNT,0,10);
 }
- 
+
+//woop woop 
 void ULPopo()
 {
   if (ULhold <= 12)
@@ -191,7 +202,7 @@ void ULPopo()
         ULleds[i] = CRGB(239,0,0);
       }
     }
-    for (int i = ULLEDCOUNT/2; i<LULEDCOUNT; i++)
+    for (int i = ULLEDCOUNT/2; i<ULLEDCOUNT; i++)
     {
       if (ULleds[i].blue == 239)
       {

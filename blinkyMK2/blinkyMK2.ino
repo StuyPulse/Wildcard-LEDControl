@@ -10,8 +10,8 @@ Youre gonna need the Patterns.h file.
 #include "Patterns.h"
 
 //Lists of pattern functions here, makes it slightly easier to add new patterns.
-patternList ULactives = {ULOff,ULSolidA,ULPulse,ULRainbow,ULPopo};
-patternList LLactives = {LLOff,LLSolidA,LLPulse,LLRainbow,LLPopo};
+patternList ULactives = {ULOff,ULSolidA,ULPulse,ULRainbow,ULPopo,ULSolidG};
+patternList LLactives = {LLOff,LLSolidA,LLPulse,LLRainbow,LLPopo,LLSolidG};
 
 //For timing
 unsigned long prevMillis = 0;
