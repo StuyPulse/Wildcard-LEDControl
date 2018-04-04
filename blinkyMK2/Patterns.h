@@ -17,7 +17,7 @@ Youre gonna need the blinkyMK2.ino file.
 #define ULPIN 7
 #define ULLEDCOUNT 8
 #define LLPIN 5
-#define LLLEDCOUNT 7
+#define LLLEDCOUNT 12
 #define frameLife 1000/FPS
 
 typedef void (*patternList[])();
@@ -87,6 +87,42 @@ void LLSolidG()
   allSet(13,200,13,1);
 }
 
+//Hot Pink
+void LLSolidHP()
+{
+  allSet(255,20,147,1);
+}
+//Yellow
+void LLSolidY()
+{
+  allSet(255,255,0,1);
+}
+//White
+void LLSolidW()
+{
+  allSet(255,255,255,1);
+}
+//Strobe Popo
+void LLStrobeB()
+{
+  if (LLhold <= 4)
+  {
+    LLhold+=1;
+    return;
+  }
+  else
+  {
+    if (LLleds[0].blue == 0)
+    {
+      allSet(0,0,240,1);
+    }
+    else
+    {
+      allSet(240,0,0,1);
+    }
+    LLhold = -1;
+  }
+}
 
 //Pulse
 void ULPulse()
