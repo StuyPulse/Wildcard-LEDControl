@@ -1,0 +1,12 @@
+Lift Lighting:
+Char  Pattern
+a     Off
+b     Solid Alliance Color
+c     Alliance Color Pulse
+d     Rainbow
+e     Police Lights
+f     Solid Green
+g     Solid Yellow
+h     Solid "Pink"
+i     STROBE
+j     Solid White
