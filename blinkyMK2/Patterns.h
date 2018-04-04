@@ -22,6 +22,7 @@ Youre gonna need the blinkyMK2.ino file.
 
 typedef void (*patternList[])();
 
+
 CRGB ULleds[ULLEDCOUNT];
 int ULhold = -1;
 
@@ -76,7 +77,7 @@ void LLSolidA()
     allSet(230,0,0,1);
   }
 }
-
+//Green
 void ULSolidG()
 {
   allSet(13,200,13,0);

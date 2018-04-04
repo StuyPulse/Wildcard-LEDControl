@@ -12,6 +12,8 @@ Youre gonna need the Patterns.h file.
 //Lists of pattern functions here, makes it slightly easier to add new patterns.
 patternList ULactives = {ULOff,ULSolidA,ULPulse,ULRainbow,ULPopo,ULSolidG};
 patternList LLactives = {LLOff,LLSolidA,LLPulse,LLRainbow,LLPopo,LLSolidG};
+byte ULactivesLen = 6;
+byte LLactivesLen = 6;
 
 //For timing
 unsigned long prevMillis = 0;
@@ -43,7 +45,7 @@ void loop()
     //Update the board with a new pattern/frame
     prevMillis = millis();
     ULactives[ULpat]();
-    LLactives[LLpat]();    
+    LLactives[LLpat]();
     FastLED.show();
   }
 }
@@ -84,11 +86,19 @@ void recvEvent(int numBytes)
      if (temp>64 && temp<91)
      {
       ULpat = temp-65;
+      if (ULpat > ULactivesLen)
+      {
+        ULpat = 0;
+      }
       Serial.print(F("UL Pattern: "));Serial.println(ULpat);
      }
      if (temp>96)
      {
       LLpat = temp-97;
+      if (LLpat > LLactivesLen)
+      {
+        LLpat = 0;
+      }
       Serial.print(F("LL Pattern: "));Serial.println(LLpat);
      }
      return;
