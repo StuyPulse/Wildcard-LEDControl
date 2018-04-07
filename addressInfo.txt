@@ -10,3 +10,6 @@ g     Solid Yellow
 h     Solid "Pink"
 i     STROBE
 j     Solid White
+
+?     Set Alliance to Red
+@	  Set Alliance to Blue

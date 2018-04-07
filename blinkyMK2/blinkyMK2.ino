@@ -46,7 +46,6 @@ void loop()
     prevMillis = millis();
     ULactives[ULpat]();
     LLactives[LLpat]();
-    Serial.println(LLhold);
     FastLED.show();
   }
 }
@@ -62,7 +61,7 @@ void recvEvent(int numBytes)
   { 
      ULOff();
      LLOff();
-     Serial.println(F("Bytes available: "));Serial.print(numBytes);
+     Serial.print(F("Bytes available: "));Serial.println(numBytes);
      byte temp = 0;
      temp = Wire.read();
      if (temp == SELF_ADDRESS)
@@ -80,8 +79,13 @@ void recvEvent(int numBytes)
       Serial.print(F("Non pattern value received: "));Serial.println(temp);
       if (temp == 63)
       {
-        blue = !blue;
-        Serial.println(F("Alliance switched."));
+        blue = false
+        Serial.println(F("RED ALLIANCE."));
+      }
+      if (temp == 64)
+      {
+        blue = true;
+        Serial.println(F("BLUE ALLIANCE."));
       }
      }
      if (temp>64 && temp<91)
