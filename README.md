@@ -7,7 +7,7 @@ Brian's house of LED development, code that will be run on the Arduinos to contr
 
 ## Required Hardware:
 - WS2812B LED Strip
-- Arduinos
+- Arduinos/teensy
 - 5V power source
 
 ### Hardware Hookup Info:
@@ -35,11 +35,10 @@ The very first prototype of the code for the slave device controlled by the robo
 Essentially i2c_LED_Control_Slave.ino but uses the MemoryFree.h library. It is just to fully verify that there will be no memory problems.
 
 ### blinkyMK1 
-The code for blinkyMK1, only controls the underlighting. Deprecated, not recommended.
-
+The code for blinkyMK1, only controls the underlighting. Not recommended, does not use "state machine"/"FPS" control style
 
 ### blinkyMK2
-The code for blinkyMK2, in progress. Use :)
+The code for blinkyMK2. Controls lift lighting. Can control underlighting, but it was never used. Version used for WildCard
 
 See layout: 
 White wire - SDA
@@ -50,6 +49,8 @@ Port closest to green terminal - for Underlighting
 Other 2 ports - for Liftlighting
 
 Good luck with your lighting!
+
+...Will possibly repurpose for Arduino Nano...
 
 
 
