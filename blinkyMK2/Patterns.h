@@ -12,12 +12,13 @@ Youre gonna need the blinkyMK2.ino file.
 
 #define FPS 60
 
-//AVOID EDITING THESE
 #define SELF_ADDRESS 95
 #define ULPIN 7
 #define ULLEDCOUNT 8
 #define LLPIN 5
 #define LLLEDCOUNT 12
+
+//AVOID EDITING THESE
 #define frameLife 1000/FPS
 
 typedef void (*patternList[])();
