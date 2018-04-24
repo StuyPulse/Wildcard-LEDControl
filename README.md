@@ -19,6 +19,9 @@ Data through center LED strip pin - see code for proper pin on Arduino
 
 ## Description of Files:
 
+### *TestingRoom:
+Some unfinished ideas or testing things. Take a look if you dare.
+
 ### LED_Control_simple_patterns.ino:
 Just 2 functions with LED subroutines in them. - Credits to Anna Li
 
@@ -42,15 +45,21 @@ The code for blinkyMK2. Controls lift lighting. Can control underlighting, but i
 
 See layout: 
 White wire - SDA
+
 Red wire - SCL
+
 Black wire - GND
 
-Port closest to green terminal - for Underlighting
+
+Port closest to power terminal - for Underlighting
+
 Other 2 ports - for Liftlighting
+
+...Will possibly repurpose for Arduino Nano...
 
 Good luck with your lighting!
 
-...Will possibly repurpose for Arduino Nano...
+
 
 
 
