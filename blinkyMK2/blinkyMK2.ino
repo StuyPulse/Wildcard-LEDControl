@@ -8,6 +8,8 @@ For the future, if you guys ever want a pretty lit bot :(
 Youre gonna need the Patterns.h file.
 */
 #include "Patterns.h"
+int statusPin = 6;
+boolean stat = true;
 
 //Lists of pattern functions here, makes it slightly easier to add new patterns.
 patternList ULactives = {ULOff,ULSolidA,ULPulse,ULRainbow,ULPopo,ULSolidG};
@@ -17,6 +19,7 @@ byte LLactivesLen = 10;
 
 //For timing
 unsigned long prevMillis = 0;
+byte blinkFrame = 0;
 
 //For tracking pattern numbers
 int ULpat = 0;
@@ -25,8 +28,8 @@ int LLpat = 0;
 
 void setup()
 {
-  pinMode(6,OUTPUT);
-  digitalWrite(6,HIGH);
+  pinMode(statusPin,OUTPUT);
+  digitalWrite(statusPin,HIGH);
   Wire.begin(SELF_ADDRESS);
   Wire.onReceive(recvEvent);
   FastLED.addLeds<WS2812,ULPIN,GRB>(ULleds,ULLEDCOUNT);
@@ -43,6 +46,16 @@ void loop()
   if (millis() - prevMillis >= frameLife)
   {
     //Update the board with a new pattern/frame
+    if (blinkFrame < 40)
+    {
+      blinkFrame+=1;
+    }
+    else
+    {
+      blinkFrame = 0;
+      digitalWrite(statusPin,!stat);
+      stat = !stat;
+    }
     prevMillis = millis();
     ULactives[ULpat]();
     LLactives[LLpat]();
@@ -79,7 +92,7 @@ void recvEvent(int numBytes)
       Serial.print(F("Non pattern value received: "));Serial.println(temp);
       if (temp == 63)
       {
-        blue = false
+//        blue = false;
         Serial.println(F("RED ALLIANCE."));
       }
       if (temp == 64)

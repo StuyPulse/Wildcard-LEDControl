@@ -85,7 +85,7 @@ void ULSolidG()
 }
 void LLSolidG()
 {
-  allSet(13,200,13,1);
+  allSet(53,243,53,1);
 }
 
 //Hot Pink
@@ -115,10 +115,10 @@ void LLStrobeB()
   {
     if (LLleds[0].blue == 0)
     {
-      allSet(0,0,240,1);
+      allSet(0,0,240,4);
     }
     else
-    {
+   {
       allSet(240,0,0,1);
     }
     LLhold = -1;
@@ -133,7 +133,7 @@ if (blue)
     if (ULhold == -1)
     {
       allSet(0,0,ULleds[0].blue+3,0);
-      if (ULleds[0].blue >= 230)
+      if (ULleds[0].blue >= 250)
       {
         ULhold = 1;
       }
@@ -152,7 +152,7 @@ if (blue)
     if (ULhold == -1)
     {
       allSet(ULleds[0].red+3,0,0,0);
-      if (ULleds[0].red >= 230)
+      if (ULleds[0].red >= 250)
       {
         ULhold = 1;
       }
@@ -231,9 +231,9 @@ void ULPopo()
   {
     for (int i = 0; i<ULLEDCOUNT/2; i++)
     {
-      if (ULleds[i].red == 239)
+      if (ULleds[i].red == 249)
       {
-        ULleds[i] = CRGB(0,0,239);
+        ULleds[i] = CRGB(0,0,249);
       }
       else
       {
@@ -266,24 +266,24 @@ void LLPopo()
   {
     for (int i = 0; i<LLLEDCOUNT/2; i++)
     {
-      if (LLleds[i].red == 239)
+      if (LLleds[i].red == 249)
       {
-        LLleds[i] = CRGB(0,0,239);
+        LLleds[i] = CRGB(0,0,249);
       }
       else
       {
-        LLleds[i] = CRGB(239,0,0);
+        LLleds[i] = CRGB(249,0,0);
       }
     }
     for (int i = LLLEDCOUNT/2; i<LLLEDCOUNT; i++)
     {
-      if (LLleds[i].blue == 239)
+      if (LLleds[i].blue == 249)
       {
-        LLleds[i] = CRGB(239,0,0);
+        LLleds[i] = CRGB(249,0,0);
       }
       else
       {
-        LLleds[i] = CRGB(0,0,239);
+        LLleds[i] = CRGB(0,0,249);
       }
     }
     LLhold = -1;
