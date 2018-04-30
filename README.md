@@ -20,14 +20,7 @@ Brian's house of LED development, code that will be run on the Arduinos to contr
 
 Data through center LED strip pin - see code for proper pin on Arduino
 
-## Description of Files:
-
-### blinkyMK1 
-The code for blinkyMK1, only controls the underlighting. Not recommended, does not use "state machine"/"FPS" control style
-
-### blinkyMK2
-The code for blinkyMK2. Controls lift lighting. Can control underlighting, but it was never used. Version used for WildCard
-
+#### blinkyMK2:
 See layout: 
 White wire - SDA
 
@@ -39,6 +32,14 @@ Black wire - GND
 Port closest to power terminal - for Underlighting
 
 Other 2 ports - for Liftlighting
+
+## Description of Files:
+
+### blinkyMK1 
+The code for blinkyMK1, only controls the underlighting. Not recommended, does not use "state machine"/"FPS" control style
+
+### blinkyMK2
+The code for blinkyMK2. Controls lift lighting. Can control underlighting, but it was never used. Version used for WildCard
 
 ### blinkyMK3 - IN THE WORKS
 The code for blinkyMK3, blinkyMK2 but with a watchdog subsystem
