@@ -2,7 +2,7 @@
 Brian's house of LED development, code that will be run on the Arduinos to control the lighting on our 2018 robot. 
 
 
-<b>Post season thoughts (4/30/18): Brian:</b> While the animation portion is pretty, the overall project is overkill, buggy, and unnecessarily complicated. It was fun though. Perhaps this can be perfected by future generations. 
+<b>Post season thoughts (4/30/18): Brian:</b> While the animation portion is pretty, the overall project is buggy. It was fun though. Perhaps this can be perfected by future generations. 
 
 ## Required Libraries:
 - FastLED.h - lib for controlling WS2812B LEDs
