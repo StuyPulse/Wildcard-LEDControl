@@ -51,7 +51,7 @@ The code for blinkyMK2. Controls lift lighting. Can control underlighting, but i
 ### blinkyMK3 - UNFINISHED
 The code for blinkyMK3, possible implementation of MCP2515
 
-### *TestingRoom:
+### __TestingRoom:
 Some unfinished ideas or testing things. Take a look if you dare.
 
 ### LED_Control_simple_patterns.ino:
