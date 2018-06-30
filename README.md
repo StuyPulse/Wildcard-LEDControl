@@ -8,6 +8,9 @@ Hypotheses of Failure/Bugginess:
 - The teensy's i2c was hanging occasionally due to no pullup resistor between signal and power?
 - The radio interference coming from the motors caused weird signals to run through the signal line, causing it to hang?
 
+Possible Solutions:
+- Utilize the MCP2515 CAN Module for better signal reliability no single use of i2c.
+
 ## Required Libraries:
 - FastLED.h - lib for controlling WS2812B LEDs
 - Wire.h - for i2c
@@ -46,9 +49,7 @@ The code for blinkyMK1, only controls the underlighting. Not recommended, does n
 The code for blinkyMK2. Controls lift lighting. Can control underlighting, but it was never used. Version used for WildCard
 
 ### blinkyMK3 - UNFINISHED
-The code for blinkyMK3, blinkyMK2 but with a watchdog subsystem
-
-<b>Notes (6/18/18):</b> Perhaps implement with CAN instead?
+The code for blinkyMK3, possible implementation of MCP2515
 
 ### *TestingRoom:
 Some unfinished ideas or testing things. Take a look if you dare.
